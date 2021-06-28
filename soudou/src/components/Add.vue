@@ -1,50 +1,65 @@
 <template>
   <div class="padding container d-flex justify-content-center">
     <div class="col-md-10 col-md-offset-1">
-      <form @submit="onSubmit" class="form">
+      <div class="alert alert-alert-success" v-if="isSuccess">
+        Bien ajouté avec succè! merci pour la confiance
+      </div>
+      <form @submit.prevent="onCreatePost" class="form">
         <h2 class="text-center p-20">Ajouter votre bien</h2>
 
         <hr />
+        <!--input 1-->
         <div class="form-group">
-          <label class="col-form-label">titre:</label>
+          <label>titre:</label>
           <input type="text" class="form-control" v-model="title" />
         </div>
+        <!--input 2-->
         <div class="form-group">
-          <label class="col-form-label">image:</label>
-          <input
-           type="input"
-            class="form-control" v-model="imageUrl"
-          />
+          <label>image:</label>
+          <input type="text" class="form-control" v-model="imageUrl" />
         </div>
+        <!--input 3-->
 
         <div class="form-group">
-          <label class="col-form-label">Description:</label>
-          <textarea class="form-control" rows="5" cols="33" v-model="description"></textarea>
+          <label>Description:</label>
+          <textarea class="form-control" v-model="description"></textarea>
         </div>
+
+         <!--input 4-->
+
         <div class="form-group">
-          <label class="col-form-label">Tel:</label>
-          <input type="text" class="form-control" v-model="tel"/>
+          <label>price:</label>
+          <input type="number" class="form-control" v-model="price">
         </div>
+        <!--input 5-->
         <div class="form-group">
-          <label class="col-form-label">Email:</label>
+          <label>Tel:</label>
+          <input type="text" class="form-control" v-model="tel" />
+        </div>
+        <!--input 6-->
+        <div class="form-group">
+          <label>Email:</label>
           <input type="email" class="form-control" v-model="email" />
         </div>
+        <!--input 7-->
 
         <div class="form-group">
-          <label class="col-form-label">Adresse du bien:</label>
-          <input type="text" class="form-control" v-model="address"/>
+          <label>Adresse du bien:</label>
+          <input type="text" class="form-control" v-model="address" />
         </div>
+        <!--input 8-->
         <div class="form-group">
-          <label class="col-form-label">code Postal:</label>
+          <label>code Postal:</label>
           <input type="number" class="form-control" v-model="cp" />
         </div>
+        <!--input 9-->
         <div class="form-group">
-          <label class="col-form-label">Ville:</label>
+          <label>Ville:</label>
           <input type="text" class="form-control" v-model="ville" />
         </div>
+        <!--button de validation-->
 
-        <div class="form-group text-center flex" id="bouton">
-          <button type="submit" class="btn btn-danger">Annuler</button>
+        <div class="form-group text-center flex m-5" id="bouton">
           <button type="submit" class="btn btn-success">valider</button>
         </div>
       </form>
@@ -57,37 +72,42 @@
 }
 </style>
 <script>
-import axios from 'axios';
+import axios from "axios";
 
 export default {
   data() {
     return {
       title: '',
-      imageUrl:'',
-      description:'',
-      tel:'',
-      email:'',
-      address:'',
-      cp:'',
-      ville:'',
-
-
-
-      errors: []
-    }
+      imageUrl: '',
+      description: '',
+      price:'',
+      tel: '',
+      email: '',
+      address: '',
+      cp: '',
+      ville: '',
+      isSuccess: false,
+    };
   },
-
   methods: {
-    // Pushes posts to the server when called.
-    onsubmit() {
-      axios.post(`http://localhost:4000/api/stuff`, {
-        title: this.title,imageUrl: this.imageUrl,description:this.description,tel:this.tel,email:this.email,address:this.address,cp:this.cp,ville:this.ville
-      })
-       .then(response => {
-            console.log('Response', response.data)
-      
-      })
-    }
-  }
-}
+    onCreatePost() {
+      axios
+        .post(`http://localhost:4000/api/stuff`, {
+          title: this.title,
+          imageUrl: this.imageUrl,
+          description: this.description,
+          price:this.price,
+          tel: this.tel,
+          email: this.email,
+          address: this.address,
+          cp: this.cp,
+          ville: this.ville,
+        })
+        .then((response) => {
+          this.isSuccess = true;
+          console.log(response);
+        });
+    },
+  },
+};
 </script>

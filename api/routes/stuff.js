@@ -8,8 +8,8 @@ const stuffCtrl = require('../controllers/stuff');
 
 router.get('/', stuffCtrl.getAllStuff);
 router.post('/', multer, stuffCtrl.createThing);
-router.get('/:id', auth, stuffCtrl.getOneThing);
-router.put('/:id', auth, multer, stuffCtrl.modifyThing);
-router.delete('/:id', auth, stuffCtrl.deleteThing);
+router.get('/:id', stuffCtrl.getOneThing);
+router.put('/:id',  multer, stuffCtrl.modifyThing);
+router.delete('/:id', stuffCtrl.deleteThing);
 
 module.exports = router;
