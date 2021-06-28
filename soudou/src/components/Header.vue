@@ -37,6 +37,7 @@
 .navbar{
   background-color: #4898a1;
   
+  
 }
 .nav-links {
   color: #fff;

@@ -12,7 +12,6 @@
     </div>
 </div>
 
-    <!--fin search-->
     <div class="row d-flex justify-content-center">
       <div class="card border-0" v-for="post of posts" :key="post">
         <div class="row set-p justify-content-center">

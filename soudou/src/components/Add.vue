@@ -60,7 +60,7 @@
         <!--button de validation-->
 
         <div class="form-group text-center flex m-5" id="bouton">
-          <button type="submit" class="btn btn-success">valider</button>
+          <button type="submit" class="btn">valider</button>
         </div>
       </form>
     </div>
@@ -69,6 +69,11 @@
 <style scoped>
 #bouton {
   justify-content: space-around;
+ 
+}
+.btn{
+     background-color: #4898a1;
+     color:#FFFF
 }
 </style>
 <script>
