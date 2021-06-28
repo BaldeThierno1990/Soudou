@@ -3,6 +3,8 @@ import Accueil from '../components/Accueil.vue'
 import Add from '../components/Add.vue'
 import Login from '../components/Login.vue'
 import Registration from '../components/Registration.vue'
+import Update from '../components/Update.vue'
+
 
 const routes = [
   {
@@ -24,6 +26,12 @@ const routes = [
    path: '/registration',
    name: 'Registration',
    component: Registration
+
+ },
+ {
+   path: '/update/:id',
+   name: 'Update',
+   component: Update
 
  }
   

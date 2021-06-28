@@ -8,24 +8,25 @@
         <div class=" d-flex justify-content-center mt-5">
             <div class="input-field"> <input placeholder="search" class="form-control" /> <button class="btn btn1"><i class="fa fa-search"></i></button> </div>
         </div>
-        <div class="d-flex justify-content-center align-items-center mt-5 gap-4 icons"> <span><i class="fa fa-google"></i></span> <span><i class="fa fa-facebook"></i></span> <span><i class="fa fa-twitter"></i></span> <span><i class="fa fa-instagram"></i></span> </div>
+      
     </div>
 </div>
 
     <div class="row d-flex justify-content-center">
-      <div class="card border-0" v-for="post of posts" :key="post">
+      <div class="card border-0" v-for="soudou of info" :key="soudou">
         <div class="row set-p justify-content-center">
           <div class="col-sm-4 px-0">
-            <img class="image" src="https://i.imgur.com/QNqiaSz.jpg" />
+            <img class="image" src="  https://v.seloger.com/s/width/800/visuels/2/7/1/b/271b06ugh0swvf3d8sjjtsm6218wvkry1b5hrz8jk.jpg" />
+          
           </div>
           <div class="col-sm-8">
           
             <div class="row px-3">
-              <h3 class="font-weight-bold">{{ post.title }}</h3>
+              <h3 class="font-weight-bold">{{ soudou.title }}</h3>
             </div>
 
             <div class="row px-3">
-              <p class="mb-1">{{ post.description }}</p>
+              <p class="mb-1">{{ soudou.description }}</p>
             </div>
             <div class="row px-3"></div>
             <div class="line"></div>
@@ -33,12 +34,19 @@
               <h5 class="text-secondary mb-1">Prix</h5>
             </div>
             <div class="row px-3">
-              <h2 class="text-success mb-1 font-weight-bold">$288</h2>
+              <h2 class="text-success mb-1 font-weight-bold">{{soudou.price}}GNF</h2>
             </div>
+
+             <!--<router-link :to="{name: 'Update', params:{ id:soudou.id}}">
+                   <button type="button" class="btn btn-dark"><i class="fas fa-pencil">modifier</i></button>
+             </router-link>-->
+         
+           <button type="button" class="btn btn-danger m-5"><i class="fas fa-pencil">supprimer</i></button>
           </div>
         </div>
       </div>
     </div>
+   
   </div>
 </template>
 
@@ -48,22 +56,21 @@ import axios from "axios";
 export default {
   data() {
     return {
-      posts: [],
-      errors: [],
+      info: null,
+    
     };
   },
 
-  // Fetches posts when the component is created.
-  created() {
+   mounted() {
+      
     axios
       .get(`http://localhost:4000/api/stuff`)
       .then((response) => {
         // JSON responses are automatically parsed.
-        this.posts = response.data;
+        this.info = response.data;
       })
-      .catch((e) => {
-        this.errors.push(e);
-      });
+     
+     
   },
 };
 </script>
@@ -184,7 +191,7 @@ search
     height: 44px;
     width: 44px;
     border-radius: 50%;
-    background-color: #3252D1;
+    background-color: #4898a1;
     border: none
 }
 
