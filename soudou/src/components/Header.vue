@@ -18,7 +18,7 @@
              <router-link class="nav-link" to="/add">Ajouter un bien</router-link>
         </li>
         <li class="nav-item">
-           <router-link class="nav-link" to="/">Connexion</router-link>
+           <router-link class="nav-link" to="/login">Connexion</router-link>
         </li>
        
        

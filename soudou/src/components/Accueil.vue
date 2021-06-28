@@ -20,14 +20,7 @@
             <img class="image" src="https://i.imgur.com/QNqiaSz.jpg" />
           </div>
           <div class="col-sm-8">
-            <div class="row px-3 mt-4 mb-3">
-              <p class="rating mb-0 px-2 mr-3"><strong>8.0</strong></p>
-              <p class="text-primary mb-0 mr-2 grade">
-                <strong>Very Good</strong>
-              </p>
-              <p class="text-secondary mb-0 mr-2">&middot;</p>
-              <p class="text-secondary mb-0">14K review</p>
-            </div>
+          
             <div class="row px-3">
               <h3 class="font-weight-bold">{{ post.title }}</h3>
             </div>
