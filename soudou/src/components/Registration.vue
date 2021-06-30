@@ -1,19 +1,19 @@
 <template>
   <div class="connexion">
     <hr />
-    <form>
+    <form @submit="onSubmit">
       <div class="social-media">
-        <p>Se connecter avec google</p>
+        <p>Inscription</p>
       </div>
       <p class="choose-email">ou utiliser mon adresse e-mail :</p>
 
       <div class="inputs">
-        <input type="text" placeholder="Nom" />
-        <input type="text" placeholder="Prénom" />
-        <input type="email" placeholder="Email" />
+        <input type="text" placeholder="Non" v-model="dirstname" />
+        <input type="text" placeholder="Prénom" v-model="lastname"/>
+        <input type="email" placeholder="Email" v-model="email"/>
 
-        <input type="password" placeholder="Mot de passe" />
-        <input type="password" placeholder="confirmation password" />
+        <input type="password" placeholder="Mot de passe" v-model="password" />
+        <input type="password" placeholder="confirmation password" v-model=" confirmPassword" />
       </div>
 
       <p class="inscription">
@@ -101,3 +101,28 @@ h1 {
   text-decoration: underline;
 }
 </style>
+<script>
+
+export default {
+  data: () => {
+    return {
+      formData: {
+        firstname: "",
+        lastname: "",
+        email: "",
+        password: "",
+        confirmPassword: "",
+      },
+      info: {
+        status: false,
+        message: "",
+      },
+      error: {
+        status: false,
+        message: "",
+      },
+    };
+  },
+  
+};
+</script>

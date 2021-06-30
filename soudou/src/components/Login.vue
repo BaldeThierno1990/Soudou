@@ -1,7 +1,7 @@
 <template>
     <div class="connexion">
         <hr>
-     <form>
+     <form  @submit.prevent="handleLogin">
      
    
     
@@ -14,8 +14,8 @@
     <p class="choose-email">ou utiliser mon adresse e-mail :</p>
     
     <div class="inputs">
-      <input type="email" placeholder="Email" />
-      <input type="password" placeholder="Mot de passe">
+      <input type="email" placeholder="Email"  v-model="email"/>
+      <input type="password" placeholder="Mot de passe" v-model="password">
     </div>
     <input type="checkbox" 
          checked>
@@ -104,3 +104,21 @@ h1{
 }
  
 </style>
+<script>
+    
+    export default {
+      
+        data: () => {
+            return {
+                formData: {
+                    email: "",
+                    password: ""
+                }
+            }
+        },
+        methods: {
+         
+        }
+    }
+</script>
+

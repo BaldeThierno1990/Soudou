@@ -23,6 +23,7 @@
             <div class="row px-3">
               <h3 class="font-weight-bold">{{ soudou.title }}</h3>
             </div>
+               <div class="line"></div>
 
             <div class="row px-3">
               <p class="mb-1">{{ soudou.description }}</p>
@@ -32,9 +33,26 @@
             <div class="row px-3 mt-3">
               <h5 class="text-secondary mb-1">Prix</h5>
             </div>
+              
             <div class="row px-3">
               <h2 class="text-success mb-1 font-weight-bold">{{soudou.price}}GNF</h2>
             </div>
+             <div class="row px-3">
+              <p class="mb-1">{{ soudou.tel }}</p>
+            </div>
+             <div class="row px-3">
+              <p class="mb-1">{{ soudou.email }}</p>
+            </div>
+             <div class="row px-3">
+              <p class="mb-1">{{ soudou.address }}</p>
+            </div>
+             <div class="row px-3">
+              <p class="mb-1">{{ soudou.cp }}</p>
+            </div>
+             <div class="row px-3">
+              <p class="mb-1">{{ soudou.ville }}</p>
+            </div>
+             
 
              <!--<router-link :to="{name: 'Update', params:{ id:soudou.id}}">
                    <button type="button" class="btn btn-dark"><i class="fas fa-pencil">modifier</i></button>
