@@ -16,8 +16,7 @@
       <div class="card border-0" v-for="soudou of info" :key="soudou">
         <div class="row set-p justify-content-center">
           <div class="col-sm-4 px-0">
-            <img class="image" src="  https://v.seloger.com/s/width/800/visuels/2/7/1/b/271b06ugh0swvf3d8sjjtsm6218wvkry1b5hrz8jk.jpg" />
-          
+           {{soudou.imageUrl}}
           </div>
           <div class="col-sm-8">
           
@@ -41,7 +40,7 @@
                    <button type="button" class="btn btn-dark"><i class="fas fa-pencil">modifier</i></button>
              </router-link>-->
          
-           <button type="button" class="btn btn-danger m-5"><i class="fas fa-pencil">supprimer</i></button>
+           <button type="button" class="btn btn-danger m-5"   @click="deleteData(soudou.id)"><i class="fas fa-pencil">supprimer</i></button>
           </div>
         </div>
       </div>
@@ -72,6 +71,15 @@ export default {
      
      
   },
+   //supprimé données Api
+           // deleteData(id) {
+              //  axios
+                 //   .delete("http://localhost:4000/api/stuff/" + id)
+                 //  .then(response => {
+                    //    this.result.splice(id, 1);
+                     //   console.log(this.soudou);
+                  //  });
+          //  },
 };
 </script>
 <style scoped>
@@ -86,7 +94,7 @@ body {
 .card {
   width: 600px;
   border-radius: 10px;
-  box-shadow: 0px 4px 8px 0px #aa00ff;
+  box-shadow: 0px 4px 8px 0px #4898a1;
   margin-top: 50px;
   margin-bottom: 50px;
   margin: 20px;

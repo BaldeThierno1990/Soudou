@@ -58,11 +58,11 @@
   background: transparent;
   transition: width 0.7s ease, background-color 0.5s ease;
 }
-.nav-item .active {
+/** .nav-item .active {
   color: #ffdd40;
   border: 1px solid #ffdd40;
 }
-
+*/
 
 
 </style>

@@ -3,8 +3,6 @@
     <hr />
     <form>
       <div class="social-media">
-      
-
         <p>Se connecter avec google</p>
       </div>
       <p class="choose-email">ou utiliser mon adresse e-mail :</p>
@@ -13,13 +11,16 @@
         <input type="text" placeholder="Nom" />
         <input type="text" placeholder="Prénom" />
         <input type="email" placeholder="Email" />
-        <input type="email" placeholder="Confirmation Adress e-mail" />
 
         <input type="password" placeholder="Mot de passe" />
         <input type="password" placeholder="confirmation password" />
       </div>
 
-      <p class="inscription">J'ai deja un compte.<router-link to="/login">Je me connecte.</router-link></p>
+      <p class="inscription">
+        J'ai deja un compte.<router-link to="/login"
+          >Je me connecte.</router-link
+        >
+      </p>
       <div align="center">
         <button type="submit">S'inscrire</button>
       </div>
@@ -32,7 +33,7 @@
   justify-content: center;
   flex-direction: columns;
   align-items: center;
- 
+
   font-family: "Roboto", sans-serif;
 }
 form {
@@ -41,7 +42,7 @@ form {
   padding: 40px 60px;
   border-radius: 30px;
   min-width: 300px;
- 
+
   box-shadow: 10px 5px 5p;
 }
 form h1 {
