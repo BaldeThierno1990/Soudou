@@ -6,17 +6,18 @@
       
        
         <div class=" d-flex justify-content-center mt-5">
-            <div class="input-field"> <input placeholder="search" class="form-control" /> <button class="btn btn1"><i class="fa fa-search"></i></button> </div>
+            <div class="input-field"> <input placeholder="search" v-model="searchBien" class="form-control" /> <button class="btn btn1"><i class="fa fa-search"></i></button> </div>
         </div>
       
     </div>
 </div>
 
     <div class="row d-flex justify-content-center">
-      <div class="card border-0" v-for="soudou of info" :key="soudou">
+      <div class="card border-0" v-for="soudou of info" :key="soudou.id">
         <div class="row set-p justify-content-center">
           <div class="col-sm-4 px-0">
-           {{soudou.imageUrl}}
+            <img src="https://file.bienici.com/photo/orpi-1-038022E1XNEM_media.immo-facile.com_office6_orpi_73019_catalog_images_pr_p_9_0_1_2_8_7_0_9012870a.jpg_DATEMAJ_202104230750?width=600&height=370&fit=cover" alt="">
+         <!--  {{soudou.imageUrl}}-->
           </div>
           <div class="col-sm-8">
           
@@ -37,16 +38,23 @@
             <div class="row px-3">
               <h2 class="text-success mb-1 font-weight-bold">{{soudou.price}}GNF</h2>
             </div>
+            <div>
+              <h1>Contact</h1>
+              </div>
              <div class="row px-3">
-              <p class="mb-1">{{ soudou.tel }}</p>
+           
+              <p class="mb-1">{{ soudou.contact }}</p>
             </div>
              <div class="row px-3">
+             
               <p class="mb-1">{{ soudou.email }}</p>
             </div>
              <div class="row px-3">
+            
               <p class="mb-1">{{ soudou.address }}</p>
             </div>
              <div class="row px-3">
+             
               <p class="mb-1">{{ soudou.cp }}</p>
             </div>
              <div class="row px-3">
@@ -54,9 +62,9 @@
             </div>
              
 
-             <!--<router-link :to="{name: 'Update', params:{ id:soudou.id}}">
+             <router-link :to="{name: 'Update', params:{ id:soudou.id}}">
                    <button type="button" class="btn btn-dark"><i class="fas fa-pencil">modifier</i></button>
-             </router-link>-->
+             </router-link>
          
            <button type="button" class="btn btn-danger m-5"   @click="deleteData(soudou.id)"><i class="fas fa-pencil">supprimer</i></button>
           </div>
@@ -89,16 +97,46 @@ export default {
      
      
   },
-   //supprimé données Api
-           // deleteData(id) {
-              //  axios
-                 //   .delete("http://localhost:4000/api/stuff/" + id)
-                 //  .then(response => {
-                    //    this.result.splice(id, 1);
-                     //   console.log(this.soudou);
-                  //  });
-          //  },
-};
+  //supprimé données Api
+            deleteData: function(id) {
+                axios
+                    .delete('Accueil/' + id)
+                    .then(function(response) {
+                        this.stat = response.status
+                        if (this.stat === 204) {
+                            this.getSoudou()
+                            this.$toast.success(`bien supprimée avec succès`, {
+                                position: "top-right"
+                            })
+                            setTimeout(this.$toast.clear, 3500)
+                        }
+                    }.bind(this))
+                    .catch(function(error) {
+                        if (error) {
+                            this.$toast.error(`Ressource introuvable`, {
+                                position: "top-right"
+                            })
+                        }
+                    }.bind(this))
+            },
+             computed: {
+            filtered: function() {
+                let search = this.Soudou
+                const searchBien = this.searchBien;
+                if (!searchBien) {
+                    return search;
+                }
+                search = search.filter(function(item) {
+                    if (item.title.toLowerCase().indexOf(searchBien) !== -1 || item.title.toUpperCase().indexOf(searchBien) !== -1) {
+                        return item;
+                    }
+                })
+                return search;
+            }}
+}
+    
+  
+
 </script>
 <style scoped>
 body {

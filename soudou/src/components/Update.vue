@@ -11,56 +11,56 @@
         <!--input 1-->
         <div class="form-group">
           <label>titre:</label>
-          <input type="text" class="form-control" v-model="title" />
+          <input type="text" class="form-control" v-model="form.title" />
         </div>
         <!--input 2-->
         <div class="form-group">
           <label>image:</label>
-          <input type="text" class="form-control" v-model="imageUrl" />
+          <input type="text" class="form-control" v-model="form.imageUrl" />
         </div>
         <!--input 3-->
 
         <div class="form-group">
           <label>Description:</label>
-          <textarea class="form-control" v-model="description"></textarea>
+          <textarea class="form-control" v-model="form.description"></textarea>
         </div>
 
          <!--input 4-->
 
         <div class="form-group">
           <label>price:</label>
-          <input type="number" class="form-control" v-model="price">
+          <input type="number" class="form-control" v-model="form.price">
         </div>
         <!--input 5-->
         <div class="form-group">
           <label>Tel:</label>
-          <input type="text" class="form-control" v-model="tel" />
+          <input type="text" class="form-control" v-model="form.contact" />
         </div>
         <!--input 6-->
         <div class="form-group">
           <label>Email:</label>
-          <input type="email" class="form-control" v-model="email" />
+          <input type="email" class="form-control" v-model="form.email" />
         </div>
         <!--input 7-->
 
         <div class="form-group">
           <label>Adresse du bien:</label>
-          <input type="text" class="form-control" v-model="address" />
+          <input type="text" class="form-control" v-model="form.address" />
         </div>
         <!--input 8-->
         <div class="form-group">
           <label>code Postal:</label>
-          <input type="number" class="form-control" v-model="cp" />
+          <input type="number" class="form-control" v-model="form.cp" />
         </div>
         <!--input 9-->
         <div class="form-group">
           <label>Ville:</label>
-          <input type="text" class="form-control" v-model="ville" />
+          <input type="text" class="form-control" v-model="form.ville" />
         </div>
         <!--button de validation-->
 
         <div class="form-group text-center flex m-5" id="bouton">
-          <button type="submit" class="btn">valider</button>
+          <button class="bg-red-500 hover:bg-red-700 text-white py-2 px-4 rounded font-semibold text-sm" type="button" v-on:click="submit()">ENVOYER</button>
         </div>
       </form>
     </div>
@@ -76,4 +76,78 @@
      color:#FFFF
 }
 </style>
-
+<script>
+    import axios from "axios";
+    const BaseUrl = 'http://localhost:4000/api/stuff';
+    export default {
+        name: "Update",
+        data() {
+            return {
+                form: {
+                    title: '',
+                    description:'',
+                    imageUrl:'',
+                    price:'',
+                    contact:'',
+                    email:'',
+                    address:'',
+                    cp:'',
+                    ville:''
+                }
+            }
+        },
+        mounted(){
+            var self = this;
+            //Lire données Api
+            let id = this.$route.params.id;
+              axios
+                .get('http://localhost:4000/api/stuff/' + id)
+                .then(function (response) {
+                    self.form = response.data
+                     console.log(response.data)
+                })
+        },
+        methods: {
+            submit: function (id) {
+                id = this.$route.params.id;
+               
+                
+                axios.put( BaseUrl + 'soudou/' + id, this.form)
+                    // eslint-disable-next-line no-unused-vars
+                  .then(function( response ){
+                        this.stat = response.status
+                        if (this.stat === 200) {
+                            this.$toast.success(`bien  mis à jour avec succès`, {
+                                position: "top-right"
+                            })
+                            setTimeout(this.$toast.clear, 3500)
+                            this.$router.push({ name: 'Accueil' })
+                        }
+                    }.bind(this))
+                    .catch(function (error) {
+                        this.err = error.response.status
+                        if (this.err === 400) {
+                            this.$toast.error(`Champ invalide`, {
+                                position: "top-right"
+                            })
+                        }
+                        else if (this.err === 404) {
+                            this.$toast.error(`Ressource introuvable`, {
+                                position: "top-right"
+                            })
+                        }
+                        else if (this.err === 422) {
+                            this.$toast.error(`Entité impossible à traiter`, {
+                                position: "top-right"
+                            })
+                        }
+                        else if (this.err === 500) {
+                            this.$toast.error(`Le bien existe deja existe déjà`, {
+                                position: "top-right"
+                            })
+                        }
+                    }.bind(this))
+        }
+    }
+    }
+</script>
