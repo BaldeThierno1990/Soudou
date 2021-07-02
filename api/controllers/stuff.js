@@ -2,15 +2,31 @@ const Thing = require('../models/thing');
 const fs = require('fs');
 
 exports.createThing = (req, res, next) => {
-  const thingObject = JSON.parse(req.body.thing);
-  delete thingObject._id;
   const thing = new Thing({
-    ...thingObject,
-    imageUrl: `${req.protocol}://${req.get('host')}/images/${req.file.filename}`
+    title: req.body.title,
+    description: req.body.description,
+    imageUrl: req.body.imageUrl,
+    price: req.body.price,
+    contact: req.body.contact,
+    email: req.body.email,
+    address: req.body.address,
+    cp: req.body.cp,
+    ville: req.body.ville,
+    userId: req.body.userId
   });
-  thing.save()
-    .then(() => res.status(201).json({ message: 'Objet enregistré !'}))
-    .catch(error => res.status(400).json({ error }));
+  thing.save().then(
+    () => {
+      res.status(201).json({
+        message: 'Bien creer avec succè!'
+      });
+    }
+  ).catch(
+    (error) => {
+      res.status(400).json({
+        error: error
+      });
+    }
+  );
 };
 
 exports.getOneThing = (req, res, next) => {
@@ -30,27 +46,48 @@ exports.getOneThing = (req, res, next) => {
 };
 
 exports.modifyThing = (req, res, next) => {
-  const thingObject = req.file ?
-    {
-      ...JSON.parse(req.body.thing),
-      imageUrl: `${req.protocol}://${req.get('host')}/images/${req.file.filename}`
-    } : { ...req.body };
-  Thing.updateOne({ _id: req.params.id }, { ...thingObject, _id: req.params.id })
-    .then(() => res.status(200).json({ message: 'Objet modifié !'}))
-    .catch(error => res.status(400).json({ error }));
+  const thing = new Thing({
+    _id: req.params.id,
+    title: req.body.title,
+    description: req.body.description,
+    imageUrl: req.body.imageUrl,
+    price: req.body.price,
+    contact: req.body.contact,
+    email: req.body.email,
+    address: req.body.address,
+    cp: req.body.cp,
+    ville: req.body.ville,
+    userId: req.body.userId
+  });
+  Thing.updateOne({_id: req.params.id}, thing).then(
+    () => {
+      res.status(201).json({
+        message: 'Bien modifié avec succè!'
+      });
+    }
+  ).catch(
+    (error) => {
+      res.status(400).json({
+        error: error
+      });
+    }
+  );
 };
 
 exports.deleteThing = (req, res, next) => {
-  Thing.findOne({ _id: req.params.id })
-    .then(thing => {
-      const filename = thing.imageUrl.split('/images/')[1];
-      fs.unlink(`images/${filename}`, () => {
-        Thing.deleteOne({ _id: req.params.id })
-          .then(() => res.status(200).json({ message: 'Objet supprimé !'}))
-          .catch(error => res.status(400).json({ error }));
+  Thing.deleteOne({_id: req.params.id}).then(
+    () => {
+      res.status(200).json({
+        message: 'Bien supprimé avec succè!'
       });
-    })
-    .catch(error => res.status(500).json({ error }));
+    }
+  ).catch(
+    (error) => {
+      res.status(400).json({
+        error: error
+      });
+    }
+  );
 };
 
 exports.getAllStuff = (req, res, next) => {
