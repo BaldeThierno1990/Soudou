@@ -7,6 +7,7 @@ import router from './router'
 //Bootstrap
 import 'bootstrap'
 import 'bootstrap/dist/css/bootstrap.min.css'
+//identification google
 
 
 

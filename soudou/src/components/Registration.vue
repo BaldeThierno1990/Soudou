@@ -5,8 +5,7 @@
       <div class="social-media">
         <p>Inscription</p>
       </div>
-      <p class="choose-email">ou utiliser mon adresse e-mail :</p>
-
+  
       <div class="inputs">
         <input type="text" placeholder="Non" v-model="dirstname" />
         <input type="text" placeholder="Prénom" v-model="lastname"/>

@@ -15,13 +15,16 @@
         </li>
         <li class="nav-item">
       
-             <router-link class="nav-link" to="/add">Ajouter un bien</router-link>
+             <router-link class="nav-link" to="/add">Ajout</router-link>
+        </li>
+         <li class="nav-item">
+      
+             <router-link class="nav-link" to="/registration">Inscription</router-link>
         </li>
         <li class="nav-item">
-           <router-link class="nav-link" to="/login">Connexion</router-link>
+           <router-link class="nav-link" to="/view">Connexion</router-link>
         </li>
-       
-       
+          
       </ul>
      
     </div>

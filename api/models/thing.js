@@ -1,36 +1,33 @@
 const mongoose = require("mongoose");
 
 const thingSchema = mongoose.Schema({
-  title: { 
+  image: { 
+    type: String 
+  },
+  name: { 
+    type: String
+   },
+ statut: { 
     type: String 
   },
   description: { 
-    type: String
-   },
-  imageUrl: { 
-    type: String 
-  },
-  price: { 
     
-    type: Number 
+    type: String
   
   },
-  contact: { 
-    type: String 
-  },
-  email:{
-    type: String
-  },
-  address:{
+  pays: { 
     type:String
-  },
-  cp:{
-    type: String
   },
   ville:{
+    type: String
+  },
+  phone:{
     type:String
   },
- userId: { type: String },
+  mail:{
+    type:String
+  },
+  
 
  
 });

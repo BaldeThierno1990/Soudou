@@ -1,23 +1,26 @@
 <template>
-  <div class="connexion">
-     <div class="alert alert-alert-success" v-if="isSuccess">
-        Bien ajouté avec succè! merci pour la confiance
-      </div>
-    <hr />
-    <form  @submit.prevent="onCreatePost">
+ 
     
+  <div class="connexion">
+    
+    
+    
+    <form  @submit.prevent="onCreatePost">
+       <div class="alert alert-alert-success" v-if="isSuccess">
+        Bien ajouté avec succè! merci pour la confiance
+     </div>
+      
 
       <div class="inputs">
-        <input type="text" placeholder="Titre" v-model="title" />
-        <textarea  placeholder="Description" v-model="description" ></textarea>
-         <input type="file" @change="processFile($event)" placeholder="Images" />
-          <input type="text" placeholder="Ex:250 GNF" v-model="price" />
-          <input type="text" placeholder="224. 620. 000. 000" v-model="tel" />
-        <input type="email" placeholder="exemple@gmail.com" v-model="email" />
-        <input type="text" placeholder="adresse"  v-model="address"/>
-
-        <input type="text" placeholder="95000" v-model="cp" />
-        <input type="text" placeholder="Ville" v-model="ville" />
+        <input type="text" placeholder="image" v-model="image" />
+          <input type="text" placeholder="name" v-model="name"/>
+         <input type="text" placeholder="statut" v-model="statut"/>
+          <input type="text" placeholder="description" v-model="description" />
+          <input type="text" placeholder="pays" v-model="pays" />
+        <input type="text" placeholder="ville" v-model="ville" />
+        <input type="text" placeholder="phone"  v-model="phone"/>
+       
+        <input type="text" placeholder="mail" v-model="mail" />
       </div>
       <div align="center">
         <button type="submit">valider</button>
@@ -110,20 +113,21 @@ h1 {
 
 
 <script>
-import axios from "axios";
+import axios from 'axios'
+
 
 export default {
   data() {
     return {
-      title: '',
-      imageUrl: '',
+    
+      image: '',
+      name: '',
+      statut:'',
       description: '',
-      price:'',
-      tel: '',
-      email: '',
-      address: '',
-      cp: '',
+      pays: '',
       ville: '',
+      phone: '',
+      mail: '',
       isSuccess: false,
     };
   },
@@ -131,15 +135,15 @@ export default {
     onCreatePost() {
       axios
         .post(`http://localhost:4000/api/stuff`, {
-          title: this.title,
-          imageUrl: this.imageUrl,
+          
+          image: this.image,
+          name: this.name,
+          statut:this.statut,
           description: this.description,
-          price:this.price,
-          tel: this.tel,
-          email: this.email,
-          address: this.address,
-          cp: this.cp,
+          pays: this.pays,
           ville: this.ville,
+          phone: this.phone,
+          mail: this.mail,
         })
         .then((response) => {
           this.isSuccess = true;
@@ -148,9 +152,7 @@ export default {
     },
   },
   
-  processFile(event) {
-    this.someData = event.target.files[0]
-  }
+ 
 }
 
 </script>

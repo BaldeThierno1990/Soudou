@@ -3,16 +3,15 @@ const fs = require('fs');
 
 exports.createThing = (req, res, next) => {
   const thing = new Thing({
-    title: req.body.title,
+    image: req.body.image,
+    name: req.body.name,
+    statut: req.body.statut,
     description: req.body.description,
-    imageUrl: req.body.imageUrl,
-    price: req.body.price,
-    contact: req.body.contact,
-    email: req.body.email,
-    address: req.body.address,
-    cp: req.body.cp,
+    pays: req.body.pays,
     ville: req.body.ville,
-    userId: req.body.userId
+    phone: req.body.phone,
+    mail: req.body.mail,
+    
   });
   thing.save().then(
     () => {
@@ -48,16 +47,14 @@ exports.getOneThing = (req, res, next) => {
 exports.modifyThing = (req, res, next) => {
   const thing = new Thing({
     _id: req.params.id,
-    title: req.body.title,
+    image: req.body.image,
+    name: req.body.name,
+    statut: req.body.statut,
     description: req.body.description,
-    imageUrl: req.body.imageUrl,
-    price: req.body.price,
-    contact: req.body.contact,
-    email: req.body.email,
-    address: req.body.address,
-    cp: req.body.cp,
+    pays: req.body.pays,
     ville: req.body.ville,
-    userId: req.body.userId
+    phone: req.body.phone,
+    mail: req.body.mail,
   });
   Thing.updateOne({_id: req.params.id}, thing).then(
     () => {

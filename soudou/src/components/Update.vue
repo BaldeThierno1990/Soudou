@@ -107,47 +107,18 @@
                      console.log(response.data)
                 })
         },
-        methods: {
+         methods: {
             submit: function (id) {
                 id = this.$route.params.id;
                
                 
-                axios.put( BaseUrl + 'soudou/' + id, this.form)
+                axios.put( BaseUrl + 'Accueil/' + id, this.form)
                     // eslint-disable-next-line no-unused-vars
-                  .then(function( response ){
-                        this.stat = response.status
-                        if (this.stat === 200) {
-                            this.$toast.success(`bien  mis à jour avec succès`, {
-                                position: "top-right"
-                            })
-                            setTimeout(this.$toast.clear, 3500)
-                            this.$router.push({ name: 'Accueil' })
-                        }
+                    .then(function( response ){
+                        // Handle success
                     }.bind(this))
-                    .catch(function (error) {
-                        this.err = error.response.status
-                        if (this.err === 400) {
-                            this.$toast.error(`Champ invalide`, {
-                                position: "top-right"
-                            })
-                        }
-                        else if (this.err === 404) {
-                            this.$toast.error(`Ressource introuvable`, {
-                                position: "top-right"
-                            })
-                        }
-                        else if (this.err === 422) {
-                            this.$toast.error(`Entité impossible à traiter`, {
-                                position: "top-right"
-                            })
-                        }
-                        else if (this.err === 500) {
-                            this.$toast.error(`Le bien existe deja existe déjà`, {
-                                position: "top-right"
-                            })
-                        }
-                    }.bind(this))
+                this.$router.push({ name: 'Accueil' })
+            }
         }
-    }
     }
 </script>
